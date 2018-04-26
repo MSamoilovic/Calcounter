@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calcounter || Meal and Calorie counter</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="d-md-flex d-block flex-row mx-md-auto mx-2">
+            <a class="navbar-brand text-white">Calcounter</a>
+        </div>
+        <ul class="nav navbar-nav ml-0">
+            <li class="nav-item">
+                <a href="#" class="btn btn-light"> Someshit</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="container" id="card-container">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center">Add Meal / Food Item</h4>
+                <form>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="foods">Food</label>
+                            <input type="text" class="form-control" id="foods">
+                        </div>
+                        <div class="col">
+                            <label for="cals">Calories</label>
+                            <input type="text" class="form-control" id="calories">
+                        </div>
+                    </div>
+                </form>
+                <button type="button" class="btn btn-primary my-2">
+                    <i class="fas fa-plus"></i> Add Meal</button>
+                <!-- <button type="button" class="btn btn-warning my-2"><i class="far fa-edit"></i> Update Meal</button>
+                <button type="button" class="btn btn-danger my-2"><i class="fas fa-trash"></i> Delete Meal</button> -->
+                <button type="button" class="btn btn-secondary " id="bckbtn">
+                    <i class="fas fa-chevron-circle-left"></i> Back</button>
+            </div>
+        </div>
+        <h2 class="text-center my-2">Total Calories :
+            <span class="total-calorie">0</span>
+        </h2>
+        <ul class="list-group" id="item-list">
+            <!-- <li class="list-group-item" id="item-">
+                <strong>Eggs:</strong>
+                <em> 300 kcal</em>
+                <a href="" class="">
+                    <i class="fas fa-pencil-alt"></i>
+                </a>
+            </li>
+            <li class="list-group-item" id="item-">
+                <strong>Meat:</strong>
+                <em>500 kcal</em>
+                <a href="" class="">
+                    <i class="fas fa-pencil-alt"></i>
+                </a>
+            </li>
+            <li class="list-group-item" id="item-">
+                <strong>Fish:</strong>
+                <em>250 kcal</em>
+                <a href="" class="">
+                    <i class="fas fa-pencil-alt"></i>
+                </a>
+            </li> -->
+        </ul>
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+
+
+.card {
+    padding-top : 15px;
+}
+
+#card-container {
+    padding-top: 25px; 
+}
+
+
+#bckbtn {
+    float: right;
+    margin-top: .5rem;
+}
+
+.fa-pencil-alt {
+    float: right;
+}
