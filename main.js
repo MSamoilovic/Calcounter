@@ -57,7 +57,7 @@ const UICtrl = ( function () {
 const App = ( function (ItemCtrl, UICtrl) {
     //console.log(ItemCtrl.logdata())
     const loadEvLis = function() {
-
+        const selectors = UICtrl.getSelectors();
     }
 
     return {
