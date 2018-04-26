@@ -31,7 +31,9 @@ const ItemCtrl = ( function () {
 const UICtrl = ( function () {
     const Selectors = {
         itemList: '#item-list',
-        addBtn : '#addItem'
+        addBtn : '#addItem', 
+        itemName : '#foods',
+        itemCalories : '#calories'
     }
 
     return {
@@ -51,7 +53,14 @@ const UICtrl = ( function () {
         },
         getSelectors : function() {
            return Selectors;  
-        }
+        },
+        itemInput : function() {
+            return {
+                name : document.querySelector(Selectors.itemName).value,
+                calories: document.querySelector(Selectors.itemCalories).value
+            }
+        }, 
+
     }
 })();
 
@@ -64,7 +73,12 @@ const App = ( function (ItemCtrl, UICtrl) {
     }
 
     const submitItem = function(e) {
-        alert('Add');
+        //alert('Add');
+        const input = UICtrl.itemInput();
+
+        
+
+        //console.log(input);
         e.preventDefault();
     }
 
