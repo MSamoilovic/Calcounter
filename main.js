@@ -30,7 +30,8 @@ const ItemCtrl = ( function () {
 
 const UICtrl = ( function () {
     const Selectors = {
-        itemList: '#item-list'
+        itemList: '#item-list',
+        addBtn : '#addItem'
     }
 
     return {
@@ -58,13 +59,22 @@ const App = ( function (ItemCtrl, UICtrl) {
     //console.log(ItemCtrl.logdata())
     const loadEvLis = function() {
         const selectors = UICtrl.getSelectors();
+        document.querySelector(selectors.addBtn).addEventListener('click', submitItem)
+
+    }
+
+    const submitItem = function(e) {
+        alert('Add');
+        e.preventDefault();
     }
 
     return {
         init: function() {
-            console.log('App is initated')
+            //console.log('App is initated')
             const items = ItemCtrl.getItems();
             UICtrl.populateList(items);
+
+            loadEvLis();
         }
     }
 })(ItemCtrl, UICtrl);
