@@ -22,6 +22,22 @@ const ItemCtrl = ( function () {
         getItems : function() {
             return data.items
         },
+        addItem : function (name, calories) {
+            //console.log(name, calories);
+            let ID;
+            if (data.items.length > 0) {
+                ID = data.items[data.items.length-1].id + 1
+            } else {
+                ID = 0;
+            }
+
+            calories  = parseInt(calories);
+
+            newItem = new Item( ID, name, calories);
+            data.items.push(newItem);
+
+            return newItem;
+        },
         logdata : function () {
             return data;
         }
@@ -75,9 +91,12 @@ const App = ( function (ItemCtrl, UICtrl) {
     const submitItem = function(e) {
         //alert('Add');
         const input = UICtrl.itemInput();
-
         
-
+        if(input.name !== '' && input.calories !== '') {
+            //console.log(input.name);
+            //console.log(input.calories);
+            const newItem = ItemCtrl.addItem(input.name, input.calories);
+        }
         //console.log(input);
         e.preventDefault();
     }
