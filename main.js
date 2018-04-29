@@ -38,6 +38,15 @@ const ItemCtrl = (function () {
 
             return newItem;
         },
+        gettotCal : function () {
+            let total = 0;
+            data.items.forEach((item) => {
+                total += Number(item.calories);
+            });
+
+            data.totalCalories = total;
+            return data.totalCalories;
+        },
         logdata: function () {
             return data;
         }
@@ -49,7 +58,8 @@ const UICtrl = (function () {
         itemList: '#item-list',
         addBtn: '#addItem',
         itemName: '#foods',
-        itemCalories: '#calories'
+        itemCalories: '#calories',
+        totalCalories: '.total-calorie'
     }
 
     return {
@@ -92,6 +102,9 @@ const UICtrl = (function () {
         hideList: function() {
             document.querySelector(Selectors.itemList).style.display = 'none'
         },
+        showtotCal: function (totalCalories) {
+            document.querySelector(Selectors.totalCalories).textContent = totalCalories;
+        },
         itemInput: function () {
             return {
                 name: document.querySelector(Selectors.itemName).value,
@@ -120,7 +133,10 @@ const App = (function (ItemCtrl, UICtrl) {
             const newItem = ItemCtrl.addItem(input.name, input.calories);
             UICtrl.addListItem(newItem);
 
-            //Clear fields
+            const totalKcal = ItemCtrl.gettotCal();
+            //Dodavanje ukupnih kalorija u UI
+            UICtrl.showtotCal(totalKcal);
+            //Obrisi polja
             UICtrl.clearFields();
         }
         //console.log(input);
@@ -142,6 +158,5 @@ const App = (function (ItemCtrl, UICtrl) {
         }
     }
 })(ItemCtrl, UICtrl);
-
 
 App.init();
