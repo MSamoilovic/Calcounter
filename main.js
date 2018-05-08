@@ -1,5 +1,35 @@
 //Storage
+const StorageCtrl = (function(){
+    return {
+        storeItem: function(item) {
+            let items;
+            if(localStorage.getItem('items') === null){
+                items = [];
+                items.push(item);
+                
+                localStorage.setItem('items', JSON.stringify(items));
+            } else {
+                //Uzimanje iz local storage sa JSON.parse
+                items = JSON.parse(localStorage.getItem(`items`));
 
+                items.push(item);
+
+                //Resetovanje local storage
+                localStorage.setItem('items', JSON.stringify(items));
+            }
+        },
+        getItemsFromStorage: function () {
+            let items;
+            if(localStorage.getItem('items')=== null) {
+                items = [];
+            } else {
+                items = JSON.parse(localStorage.getItem(`items`));
+            }
+
+            return items
+        } 
+    }
+})()
 //List items
 const ItemCtrl = (function () {
     const Item = function (id, name, calories) {
@@ -9,11 +39,11 @@ const ItemCtrl = (function () {
     }
 
     const data = {
-        items: [
+        /* items: [
             /* { id: 0, name: 'Steak Dinner', calories: 1200 },
             { id: 1, name: 'Cookie', calories: 400 },
             { id: 2, name: 'Eggs', calories: 300 } */
-        ],
+        items : StorageCtrl.getItemsFromStorage(),
         currentItem: null,
         totalCalories: 0
     }
@@ -207,7 +237,7 @@ const UICtrl = (function () {
     }
 })();
 
-const App = (function (ItemCtrl, UICtrl) {
+const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
     //console.log(ItemCtrl.logdata())
     const loadEvLis = function () {
         const selectors = UICtrl.getSelectors();
@@ -241,6 +271,8 @@ const App = (function (ItemCtrl, UICtrl) {
             const totalKcal = ItemCtrl.gettotCal();
             //Dodavanje ukupnih kalorija u UI
             UICtrl.showtotCal(totalKcal);
+            //Pakovanje u storage
+            StorageCtrl.storeItem(newItem);
             //Obrisi polja
             UICtrl.clearFields();
         }
@@ -321,6 +353,6 @@ const App = (function (ItemCtrl, UICtrl) {
             loadEvLis();
         }
     }
-})(ItemCtrl, UICtrl);
+})(ItemCtrl, StorageCtrl, UICtrl);
 
 App.init();
