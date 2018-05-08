@@ -199,7 +199,9 @@ const App = (function (ItemCtrl, UICtrl) {
 
         document.querySelector(selectors.itemList).addEventListener('click', itemUpdate);
 
-        document.querySelector(selectors.updateBtn).addEventListener('click', itemUpdateSubmit)
+        document.querySelector(selectors.updateBtn).addEventListener('click', itemUpdateSubmit);
+
+        document.querySelector(selectors.backBtn).addEventListener('click', UICtrl.clearEditState);
 
     }
 
