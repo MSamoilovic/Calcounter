@@ -27,7 +27,33 @@ const StorageCtrl = (function(){
             }
 
             return items
-        } 
+        }, 
+        updateItemStorage: function (updatedItem) {
+            let items = JSON.parse(localStorage.getItem(`items`));
+
+            items.forEach((item, index) => {
+                if(updatedItem.id === item.id){
+                    items.splice(index, 1, updatedItem); 
+                }
+            });
+
+            localStorage.setItem(`items`, JSON.stringify(items));
+        },
+
+        deleteFromStorage: function(id) {
+            let items = JSON.parse(localStorage.getItem(`items`));
+
+            items.forEach((item, index) => {
+                if(id === item.id){
+                    items.splice(index, 1); 
+                }
+            });
+
+            localStorage.setItem(`items`, JSON.stringify(items));
+        },
+        clearItemsFromStorage: function() {
+            localStorage.removeItem(`items`);
+        }
     }
 })()
 //List items
@@ -306,7 +332,8 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 
         const totalKcal = ItemCtrl.gettotCal();
         UICtrl.showtotCal(totalKcal);
-        UICtrl.clearEditState();
+        StorageCtrl.updateItemStorage(updateItem);
+        //
 
         e.preventDefault();
     };
@@ -320,6 +347,9 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 
         const totalKcal = ItemCtrl.gettotCal();
         UICtrl.showtotCal(totalKcal);
+
+        StorageCtrl.deleteFromStorage(currentItem.id)
+
         UICtrl.clearEditState();
 
         e.preventDefault();
@@ -333,6 +363,9 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
         UICtrl.showtotCal(totalKcal);
 
         UICtrl.clearListItems();
+
+        //Sklanja iz storage
+        StorageCtrl.clearItemsFromStorage();
         UICtrl.hideList();
         
     }
